@@ -90,7 +90,10 @@ h2::after {
 }
 .aside > .container {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-areas:
+    'details'
+    'skills'
+    'other';
   width: 100%;
   gap: 20px;
   padding-top: 20px;
@@ -211,6 +214,7 @@ h2::after {
     padding: 20px;
   }
   .aside > .container {
+    padding: 0;
     grid-template-areas:
       'skills skills'
       'details other';
