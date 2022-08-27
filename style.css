@@ -86,12 +86,24 @@ h2::after {
 .aside {
   border-right: 3px solid var(--light-grey);
   padding-right: 20px;
+  max-width: 280px;
 }
 .aside > .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto;
+  width: 100%;
   gap: 20px;
   padding-top: 20px;
+}
+
+.skills {
+  grid-area: skills;
+}
+.details {
+  grid-area: details;
+}
+.other {
+  grid-area: other;
 }
 
 .section-item {
@@ -161,7 +173,8 @@ h2::after {
 
 .portfolio-list {
   display: grid;
-  grid-template-columns: repeat(2, 320px);
+  grid-template-columns: repeat(auto-fit, 320px);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
   transition: box-shadow ease 150ms;
 }
@@ -186,4 +199,50 @@ h2::after {
   aspect-ratio: calc(4 / 3);
   object-fit: cover;
   object-position: top;
+}
+
+@media screen and (max-width: 1000px) {
+  .main {
+    flex-direction: column-reverse;
+  }
+  .aside {
+    max-width: 100%;
+    border-right: none;
+    padding: 20px;
+  }
+  .aside > .container {
+    grid-template-areas:
+      'skills skills'
+      'details other';
+  }
+  .header {
+    padding: 20px;
+  }
+  .core {
+    padding: 20px;
+  }
+  .core > .section-item:last-child {
+    border-bottom: 3px solid var(--upper-light-grey);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .aside > .container {
+    grid-template-areas:
+      'skills'
+      'details'
+      'other';
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .aside {
+    padding: 5px;
+  }
+  .header {
+    padding: 5px;
+  }
+  .core {
+    padding: 5px;
+  }
 }
